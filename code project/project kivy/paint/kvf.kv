@@ -1,0 +1,100 @@
+
+<popup>:
+    id : pop
+    title: 'Color Select'
+    size_hint: None, None
+    size: 400,400
+    auto_dismiss: False
+    Cpicker:
+        on_color: root.hello(self.color)
+        Button:
+            text: 'Select'
+            pos_hint: {'center_x': .76, 'y': .03}
+            size_hint: None, None
+            size: 100, 50
+            on_press: root.dismiss()
+
+<Mybutton@Button>:
+    font_size: 25
+    color: 0, 1, 0, 1
+    size: 150, 50
+    size_hint: .200, .150
+
+
+ScreenManagement:
+    MainScreen:
+ 
+<MainScreen>:
+    
+    lab : labe
+    Label:
+        pos: root.width*(0.3),root.height *(0.85)
+        font_size: 25
+        color: 0, 1, 0, 1
+        size: 150, 50
+        size_hint: .200, .150
+        text:"Click Anywhere to begin"
+    Painter:
+        id: painter
+        
+    
+    Mybutton:
+        pos: root.width*(0.8),0
+        text: 'Color Select'
+        on_press: root.open_it1()
+    FloatLayout:
+        orientation: "vertical"
+        
+        Label:
+            id: labe
+            pos: root.width*(0),root.height *(0.101)
+            font_size: 25
+            color: 0, 1, 0, 1
+            size: 150, 50
+            size_hint: .200, .150
+            text:"Width : 5"
+                
+            Slider:
+                pos: root.width*(0.05),root.height *(0)
+                step : 0.1
+                value: 5
+                min: 1
+                max: 25
+                on_value : root.thick(*args)
+
+
+    Mybutton:
+        on_release:painter.canvas.clear() ; painter.canvas.after.clear()
+        pos: root.width*(0.621),0
+        background_normal: 'clear.png'
+       
+    Mybutton:
+        pos: root.width*(0.460),0
+        on_press: root.eraser()
+        background_normal: 'eraser.png'
+       
+    Mybutton:
+        pos: root.width*(0.280),0
+        on_press: root.pencil()
+        background_normal: 'pencil.png'
+
+    Mybutton:
+        pos: root.width*(0.135),0
+        on_press: root.brush()
+        background_normal: 'brush.png'
+       
+    Mybutton:
+        pos: root.width*(0.8),root.height *(0.151)
+        on_press: root.sl()
+        background_normal: 'sl.png'
+       
+    Mybutton:
+        pos: root.width*(0.8),root.height *(0.302)
+        on_press: root.rect()
+        background_normal: 'rect.png'
+    Mybutton:
+        text: 'Save'
+        pos: root.width*(0.8),root.height *(0.453)
+        on_press: painter.save()
+        #background_normal: 'rect.png'    
+
